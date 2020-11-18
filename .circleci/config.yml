@@ -7,9 +7,9 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      # - checkout
+      - checkout
       # - setup_remote_docker: # for faster builds
-      # docker_layer_caching: true
+         # docker_layer_caching: true
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
       - run:
@@ -51,7 +51,7 @@ jobs:
         - run:
             name: Publish Release on GitHub
             command: |
-              VERSION=$(date +'%Y%m%d_%H%M%S')
+              VERSION=$(date +%Y%m%d_%H%M%S)
               ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} /tmp/artifacts/
 workflows:
   version: 2
