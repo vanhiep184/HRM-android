@@ -21,60 +21,59 @@
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#771710"
+            android:backgroundTint="@color/colorRed"
             android:ems="10"
-            android:hint="Your name"
+            android:hint="@string/your_name"
             android:inputType="textPersonName"
-            android:textColor="#FFFFFF"
-            android:textColorHighlight="#FFFFFF"
+            android:textColor="@color/colorWhite"
             android:textColorHint="#B1ACAC" />
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#771710"
+            android:backgroundTint="@color/colorRed"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#979494" />
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteGray" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#771710"
+            android:backgroundTint="@color/colorRed"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#9C9898" />
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteGray" />
 
         <EditText
             android:id="@+id/editTextConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#771710"
+            android:backgroundTint="@color/colorRed"
             android:ems="10"
-            android:hint="Confirm password"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#858080" />
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteGray" />
 
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#771710"
-            android:text="Register"
-            android:textColor="#FFFFFF" />
+            android:backgroundTint="@color/colorRed"
+            android:text="@string/register"
+            android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" Login" />
+            android:text="@string/login" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

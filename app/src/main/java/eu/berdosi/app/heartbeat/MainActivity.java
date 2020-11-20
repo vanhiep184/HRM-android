@@ -1,10 +1,12 @@
 package eu.berdosi.app.heartbeat;
 
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 
@@ -23,9 +25,12 @@ import android.view.TextureView;
 import android.view.Surface;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.scottyab.HeartBeatView;
 
 import java.util.Date;
 
@@ -44,16 +49,23 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-
+            int i=0;
             if (msg.what == MESSAGE_UPDATE_REALTIME) {
                 ((TextView) findViewById(R.id.textView)).setText(msg.obj.toString());
             }
+            if (msg.what == MESSAGE_PROGRESS_REALTIME) {
+
+                ProgressBar progress  = findViewById(R.id.progress);
+                progress.setProgress(Integer.parseInt(msg.obj.toString()));
+            }
 
             if (msg.what == MESSAGE_UPDATE_FINAL) {
-                ((EditText) findViewById(R.id.editText)).setText(msg.obj.toString());
-
+                //((EditText) findViewById(R.id.editText)).setText(msg.obj.toString());
+                HeartBeatView heart = findViewById(R.id.heartbeat);
+                heart.stop();
                 findViewById(R.id.floatingActionButton).setClickable(true);
-
+                ((TextView) findViewById(R.id.textView)).setTextColor(Color.YELLOW);
+                ((TextView) findViewById(R.id.measure)).setVisibility(View.VISIBLE);
                 // make sure menu items are enabled when it opens.
                 menuNewMeasurementEnabled = true;
                 menuExportResultEnabled = true;
@@ -67,6 +79,7 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
 
     public static final int MESSAGE_UPDATE_REALTIME = 1;
     public static final int MESSAGE_UPDATE_FINAL = 2;
+    public static final int MESSAGE_PROGRESS_REALTIME = 3;
 
     @Override
     protected void onResume() {
@@ -104,11 +117,17 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-
+        Toolbar toolbar = findViewById(R.id.topAppBar);
+        HeartBeatView heart = findViewById(R.id.heartbeat);
+        heart.start();
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.CAMERA},
                 REQUEST_CODE_CAMERA);
+        TextView clickMeasure = findViewById(R.id.measure);
+        clickMeasure.setOnClickListener(v -> onClickNewMeasurement());
+        clickMeasure.setVisibility(View.GONE);
+        TabLayout tabs = findViewById(R.id.tabs);
+        tabs.getTabAt(1).select();
 
     }
 
@@ -153,11 +172,16 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
         startActivity(Intent.createChooser(intent, getString(R.string.send_output_to)));
     }
 
-    public void onClickNewMeasurement(MenuItem item) {
+    public void onClickNewMeasurement() {
         analyzer  = new OutputAnalyzer(this, findViewById(R.id.graphTextureView), mainHandler);
+        TextView measure =  findViewById(R.id.measure);
+        measure.setVisibility(View.GONE);
 
         TextureView cameraTextureView = findViewById(R.id.textureView2);
         SurfaceTexture previewSurfaceTexture = cameraTextureView.getSurfaceTexture();
+        ProgressBar progress  = findViewById(R.id.progress);
+        progress.setProgress(0);
+        ((TextView) findViewById(R.id.textView)).setTextColor(Color.WHITE);
         if ((previewSurfaceTexture != null) && !justShared) {
             // this first appears when we close the application and switch back - TextureView isn't quite ready at the first onResume.
             Surface previewSurface = new Surface(previewSurfaceTexture);
@@ -173,9 +197,9 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
     }
 
     public void onClickExportDetails(MenuItem item) {
-        final Intent intent = getTextIntent(((EditText) findViewById(R.id.editText)).getText().toString());
+        //final Intent intent = getTextIntent(((EditText) findViewById(R.id.editText)).getText().toString());
         justShared = true;
-        startActivity(Intent.createChooser(intent, getString(R.string.send_output_to)));
+        //startActivity(Intent.createChooser(intent, getString(R.string.send_output_to)));
     }
 
     private Intent getTextIntent(String intentText) {

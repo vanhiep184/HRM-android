@@ -24,10 +24,10 @@
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColor="#FDFCFC"
-                android:textColorHighlight="#771710"
-                android:textColorHint="#787373"
-                android:textColorLink="#771710" />
+                android:textColor="@color/colorWhite"
+                android:textColorHighlight="@color/colorRed"
+                android:textColorHint="@color/colorWhiteGray"
+                android:textColorLink="@color/colorRed" />
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -40,13 +40,13 @@
                 android:inputType="textPassword"
                 android:textColor="#FFFFFF"
                 android:textColorHighlight="#4CAF50"
-                android:textColorHint="#676161" />
+                android:textColorHint="@color/colorWhiteGray" />
 
             <Button
                 android:id="@+id/buttonLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#771710"
+                android:backgroundTint="@color/colorRed"
                 android:text="Log in"
                 android:textColor="#FFFFFF" />
 

@@ -14,18 +14,18 @@ class ChartDrawer
     private final Paint paint = new Paint();
     private final Paint fillWhite = new Paint();
 
-    ChartDrawer(TextureView chartTextureView) {
+    ChartDrawer(TextureView chartTextureView, int color) {
         this.chartTextureView = chartTextureView;
 
 
         paint.setStyle(Paint.Style.STROKE);
 
-        paint.setColor(Color.BLUE);
+        paint.setColor(Color.WHITE);
         paint.setAntiAlias(true);
         paint.setStrokeWidth(2);
 
         fillWhite.setStyle(Paint.Style.FILL);
-        fillWhite.setColor(Color.WHITE);
+        fillWhite.setColor(color);
 
     }
 

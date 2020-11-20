@@ -32,7 +32,7 @@ class OutputAnalyzer {
 
     OutputAnalyzer(Activity activity, TextureView graphTextureView, Handler mainHandler) {
         this.activity = activity;
-        this.chartDrawer = new ChartDrawer(graphTextureView);
+        this.chartDrawer = new ChartDrawer(graphTextureView,activity.getResources().getColor(R.color.colorGray));
         this.mainHandler = mainHandler;
     }
 
@@ -70,6 +70,7 @@ class OutputAnalyzer {
                 // skip the first measurements, which are broken by exposure metering
                 if (clipLength > (++ticksPassed * measurementInterval)) return;
 
+
                 Thread thread = new Thread(() -> {
                     Bitmap currentBitmap = textureView.getBitmap();
                     int pixelCount = textureView.getWidth() * textureView.getHeight();
@@ -103,6 +104,7 @@ class OutputAnalyzer {
                                 1f * (measurementLength - millisUntilFinished - clipLength) / 1000f);
 
                         sendMessage(MainActivity.MESSAGE_UPDATE_REALTIME, currentValue);
+                        sendMessage(MainActivity.MESSAGE_PROGRESS_REALTIME, Long.toString(((measurementLength - millisUntilFinished - clipLength) / 1000)*10));
                     }
 
                     // draw the chart on a separate thread.
@@ -125,6 +127,7 @@ class OutputAnalyzer {
                         1f * (valleys.get(valleys.size() - 1) - valleys.get(0)) / 1000f);
 
                 sendMessage(MainActivity.MESSAGE_UPDATE_REALTIME, currentValue);
+
 
                 StringBuilder returnValueSb = new StringBuilder();
                 returnValueSb.append(currentValue);
