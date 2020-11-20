@@ -20,9 +20,20 @@
     <string name="new_measurement">New Measurement</string>
     <string name="export_result">Export Result</string>
     <string name="export_details">Export Details</string>
+    <string name="measure">Measure</string>
+    <string name="help">Help</string>
+    <string name="history">History</string>
+    <string name="clickToMeasure">CLICK TO MEASURE</string>
+    <string name="measuring">MEASURE...</string>
+    <string name="your_name">Your name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
     <plurals name="measurement_output_template">
-        <item quantity="zero">Pulse: %2.1f (%d cycle in %2.1f seconds)</item>
-        <item quantity="one">Pulse: %2.1f (%d cycle in %2.1f seconds)</item>
-        <item quantity="other">Pulse: %2.1f (%d cycles in %2.1f seconds)</item>
+        <item quantity="zero">%2.0f</item>
+        <item quantity="one">%2.0f</item>
+        <item quantity="other">%2.0f</item>
     </plurals>
 </resources>
