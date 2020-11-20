@@ -7,6 +7,8 @@ import androidx.navigation.Navigation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import eu.berdosi.app.heartbeat.databinding.ActivityLoginBinding;
@@ -27,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.buttonLogin.setOnClickListener(view -> {
             inputEmail = binding.editTextEmail.getText().toString();
             inputPassword = binding.editTextPassword.getText().toString();
-            Toast.makeText(getApplicationContext(), inputEmail+ "and" + inputPassword,
+            Toast.makeText(getApplicationContext(), inputEmail+ " " + inputPassword,
                 Toast.LENGTH_LONG).show();
         });
     }
