@@ -3,7 +3,6 @@
 
     <item
         android:id="@+id/menuNewMeasurement"
-        android:onClick="onClickNewMeasurement"
         android:title="@string/new_measurement" />
     <item
         android:id="@+id/menuExportResult"
