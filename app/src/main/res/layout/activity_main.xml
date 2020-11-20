@@ -165,7 +165,8 @@
             android:id="@+id/textureView2"
             android:layout_width="@dimen/camera_view_width"
             android:layout_height="@dimen/camera_view_height"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
