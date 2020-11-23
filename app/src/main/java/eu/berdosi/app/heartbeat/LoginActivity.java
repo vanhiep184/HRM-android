@@ -1,10 +1,13 @@
 package eu.berdosi.app.heartbeat;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -20,10 +23,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
 
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000")));
         binding.buttonRegister.setOnClickListener(view -> {
-            startActivity(new Intent(this,RegisterActivity.class));
+            startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
         });
 
         binding.buttonLogin.setOnClickListener(view -> {
@@ -31,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
             inputPassword = binding.editTextPassword.getText().toString();
             Toast.makeText(getApplicationContext(), inputEmail+ " " + inputPassword,
                 Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
         });
     }
 }
