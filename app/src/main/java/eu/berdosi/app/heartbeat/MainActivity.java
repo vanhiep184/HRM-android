@@ -44,6 +44,11 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
     private boolean menuExportResultEnabled = false;
     private boolean menuExportDetailsEnabled = false;
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     @SuppressLint("HandlerLeak")
     private final Handler mainHandler = new Handler() {
         @Override
