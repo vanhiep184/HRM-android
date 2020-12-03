@@ -1,4 +1,4 @@
-package eu.berdosi.app.heartbeat;
+package eu.berdosi.app.heartbeat.Tabs;
 
 import android.Manifest;
 import android.app.Activity;
@@ -19,7 +19,7 @@ import androidx.core.app.ActivityCompat;
 import java.util.Collections;
 import java.util.Objects;
 
-class CameraService {
+public class CameraService {
     private String cameraId;
     private final Activity activity;
     private CameraDevice cameraDevice;
@@ -103,7 +103,7 @@ class CameraService {
         }
     }
 
-    void stop() {
+    public void stop() {
         try {
             cameraDevice.close();
         } catch (Exception e) {

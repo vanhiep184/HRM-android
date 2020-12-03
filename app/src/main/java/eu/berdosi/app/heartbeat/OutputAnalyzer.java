@@ -10,7 +10,9 @@ import android.view.TextureView;
 import java.util.Locale;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-class OutputAnalyzer {
+import eu.berdosi.app.heartbeat.Tabs.CameraService;
+
+public class OutputAnalyzer {
     private final Activity activity;
 
     private final ChartDrawer chartDrawer;
@@ -30,7 +32,7 @@ class OutputAnalyzer {
 
     private final Handler mainHandler;
 
-    OutputAnalyzer(Activity activity, TextureView graphTextureView, Handler mainHandler) {
+    public OutputAnalyzer(Activity activity, TextureView graphTextureView, Handler mainHandler) {
         this.activity = activity;
         this.chartDrawer = new ChartDrawer(graphTextureView,activity.getResources().getColor(R.color.colorGray));
         this.mainHandler = mainHandler;
@@ -54,7 +56,7 @@ class OutputAnalyzer {
         }
     }
 
-    void measurePulse(TextureView textureView, CameraService cameraService) {
+    public void measurePulse(TextureView textureView, CameraService cameraService) {
 
         // 20 times a second, get the amount of red on the picture.
         // detect local minimums, calculate pulse.
@@ -181,7 +183,7 @@ class OutputAnalyzer {
         timer.start();
     }
 
-    void stop() {
+    public void stop() {
         if (timer != null) {
             timer.cancel();
         }
