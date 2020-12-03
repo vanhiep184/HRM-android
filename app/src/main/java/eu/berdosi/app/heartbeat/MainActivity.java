@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -29,6 +30,8 @@ import java.util.Date;
 
 import eu.berdosi.app.heartbeat.Tabs.Adapter;
 import eu.berdosi.app.heartbeat.Tabs.CameraService;
+
+import static android.media.MediaCodec.MetricsConstants.MODE;
 
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 new String[]{Manifest.permission.CAMERA},
                 REQUEST_CODE_CAMERA);
         initView();
-
+        createDatabase();
 
     }
 
@@ -95,36 +98,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
     }
 
+    SQLiteDatabase createDatabase(){
+          return  openOrCreateDatabase("measureapp.db",MODE_PRIVATE,null);
+     }
 
-//    public void onClickShareButton(View view) {
-//        final Intent intent = new Intent(Intent.ACTION_SEND);
-//        intent.setType("text/plain");
-//        intent.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.output_header_template), new Date()));
-//        intent.putExtra(
-//                Intent.EXTRA_TEXT,
-//                String.format(
-//                        getString(R.string.output_body_template),
-//                        ((TextView) findViewById(R.id.textView)).getText(),
-//                        ((EditText) findViewById(R.id.editText)).getText()));
-//
-//        justShared = true;
-//        startActivity(Intent.createChooser(intent, getString(R.string.send_output_to)));
-//    }
-
-
-
-//    public void onClickExportResult(MenuItem item) {
-//        final Intent intent = getTextIntent((String) ((TextView) findViewById(R.id.textView)).getText());
-//        justShared = true;
-//        startActivity(Intent.createChooser(intent, getString(R.string.send_output_to)));
-//    }
-
-
-//    private Intent getTextIntent(String intentText) {
-//        final Intent intent = new Intent(Intent.ACTION_SEND);
-//        intent.setType("text/plain");
-//        intent.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.output_header_template), new Date()));
-//        intent.putExtra(Intent.EXTRA_TEXT, intentText);
-//        return intent;
-//    }
 }

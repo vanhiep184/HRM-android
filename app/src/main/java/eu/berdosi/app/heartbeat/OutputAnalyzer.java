@@ -133,7 +133,7 @@ public class OutputAnalyzer {
 
                 StringBuilder returnValueSb = new StringBuilder();
                 returnValueSb.append(currentValue);
-                returnValueSb.append(activity.getString(R.string.row_separator));
+//                returnValueSb.append(activity.getString(R.string.row_separator));
 
                 // look for "drops" of 0.15 - 0.75 in the value
                 // a drop may take 2-3 ticks.
@@ -152,27 +152,15 @@ public class OutputAnalyzer {
                 // returnValueSb.append((float) dropCount / ((float) (measurementLength - clipLength) / 1000f / 60f));
                 // returnValueSb.append(activity.getString(R.string.row_separator));
 
-                returnValueSb.append(activity.getString(R.string.raw_values));
-                returnValueSb.append(activity.getString(R.string.row_separator));
-
-
-                for (int stdValueIdx = 0; stdValueIdx < stdValues.size(); stdValueIdx++) {
-                    // stdValues.forEach((value) -> { // would require API level 24 instead of 21.
-                    Measurement<Float> value = stdValues.get(stdValueIdx);
-                    returnValueSb.append(value.timestamp.getTime());
-                    returnValueSb.append(activity.getString(R.string.separator));
-                    returnValueSb.append(value.measurement);
-                    returnValueSb.append(activity.getString(R.string.row_separator));
-                }
-
-                returnValueSb.append(activity.getString(R.string.output_detected_peaks_header));
-                returnValueSb.append(activity.getString(R.string.row_separator));
-
-                // add detected valleys location
-                for (long tick : valleys) {
-                    returnValueSb.append(tick);
-                    returnValueSb.append(activity.getString(R.string.row_separator));
-                }
+//                returnValueSb.append(activity.getString(R.string.raw_values));
+//                returnValueSb.append(activity.getString(R.string.row_separator));
+//
+//
+//                for (int stdValueIdx = 0; stdValueIdx < stdValues.size(); stdValueIdx++) {
+//                    // stdValues.forEach((value) -> { // would require API level 24 instead of 21.
+//                    Measurement<Float> value = stdValues.get(stdValueIdx);
+//                    returnValueSb.append(value.measurement);
+//                }
 
                 sendMessage(MainActivity.MESSAGE_UPDATE_FINAL, returnValueSb.toString());
 

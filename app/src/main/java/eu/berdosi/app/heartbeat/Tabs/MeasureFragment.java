@@ -3,6 +3,7 @@ package eu.berdosi.app.heartbeat.Tabs;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
@@ -26,8 +27,13 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.scottyab.HeartBeatView;
 
-import eu.berdosi.app.heartbeat.R;
+import java.time.LocalDateTime;
 
+import eu.berdosi.app.heartbeat.R;
+import eu.berdosi.app.heartbeat.Utils.HistoryMeasure;
+import eu.berdosi.app.heartbeat.Utils.SQLiteHelper;
+
+import static android.content.Context.MODE_PRIVATE;
 import static eu.berdosi.app.heartbeat.MainActivity.MESSAGE_PROGRESS_REALTIME;
 import static eu.berdosi.app.heartbeat.MainActivity.MESSAGE_UPDATE_FINAL;
 import static eu.berdosi.app.heartbeat.MainActivity.MESSAGE_UPDATE_REALTIME;
@@ -106,12 +112,14 @@ public class MeasureFragment extends Fragment {
             }
 
             if (msg.what == MESSAGE_UPDATE_FINAL) {
-                //((EditText) findViewById(R.id.editText)).setText(msg.obj.toString());
+
                 HeartBeatView heart = rootView.findViewById(R.id.heartbeat);
                 heart.stop();
                 ((TextView) rootView.findViewById(R.id.textView)).setTextColor(Color.YELLOW);
                 ((TextView) rootView.findViewById(R.id.measure)).setVisibility(View.VISIBLE);
-                // make sure menu items are enabled when it opens.
+                SQLiteHelper db = new SQLiteHelper(getContext());
+                db.addResult( new HistoryMeasure("123",LocalDateTime.now(),Integer.parseInt( msg.obj.toString())));
+
             }
         }
     };
