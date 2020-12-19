@@ -1,4 +1,4 @@
-package eu.berdosi.app.heartbeat;
+package hcmus.app.heartbeat;
 
 import java.util.Date;
 import java.util.concurrent.CopyOnWriteArrayList;

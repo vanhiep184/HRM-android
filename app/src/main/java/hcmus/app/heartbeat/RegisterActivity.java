@@ -1,4 +1,4 @@
-package eu.berdosi.app.heartbeat;
+package hcmus.app.heartbeat;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +15,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import eu.berdosi.app.heartbeat.databinding.ActivityRegisterBinding;
-import eu.berdosi.app.heartbeat.model.RegisterResponse;
-import eu.berdosi.app.heartbeat.network.RetrofitClient;
+import hcmus.app.heartbeat.databinding.ActivityRegisterBinding;
+import hcmus.app.heartbeat.model.RegisterResponse;
+import hcmus.app.heartbeat.network.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

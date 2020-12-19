@@ -1,4 +1,4 @@
-package eu.berdosi.app.heartbeat;
+package hcmus.app.heartbeat;
 
 
 import android.Manifest;
@@ -11,7 +11,6 @@ import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 

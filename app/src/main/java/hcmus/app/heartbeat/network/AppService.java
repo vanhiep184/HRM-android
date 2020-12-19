@@ -1,7 +1,7 @@
-package eu.berdosi.app.heartbeat.network;
+package hcmus.app.heartbeat.network;
 
-import eu.berdosi.app.heartbeat.model.LoginResponse;
-import eu.berdosi.app.heartbeat.model.RegisterResponse;
+import hcmus.app.heartbeat.model.LoginResponse;
+import hcmus.app.heartbeat.model.RegisterResponse;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Field;
@@ -19,7 +19,7 @@ public interface AppService {
     );
 
     @FormUrlEncoded
-    @POST("auth/login")
+    @POST("/auth/login")
     Call<LoginResponse> login (
             @Field("email") String _email,
             @Field("password") String _password

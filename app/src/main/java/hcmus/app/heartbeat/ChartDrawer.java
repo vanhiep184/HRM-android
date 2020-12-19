@@ -1,4 +1,4 @@
-package eu.berdosi.app.heartbeat;
+package hcmus.app.heartbeat;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
