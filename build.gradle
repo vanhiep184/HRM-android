@@ -25,7 +25,12 @@ allprojects {
         }
     }
 }
+// modules in the project.
+ext {
+    // The following are only a few examples of the types of properties you can define.
+    compileSdkVersion = 28
 
+}
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

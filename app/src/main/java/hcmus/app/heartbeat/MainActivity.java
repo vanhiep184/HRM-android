@@ -124,9 +124,14 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
         Toolbar toolbar = findViewById(R.id.topAppBar);
         HeartBeatView heart = findViewById(R.id.heartbeat);
         heart.start();
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.CAMERA},
-                REQUEST_CODE_CAMERA);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    REQUEST_CODE_CAMERA);
+        }
         TextView clickMeasure = findViewById(R.id.measure);
         clickMeasure.setOnClickListener(v -> onClickNewMeasurement());
         clickMeasure.setVisibility(View.GONE);
@@ -137,6 +142,7 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_CAMERA) {
             if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
