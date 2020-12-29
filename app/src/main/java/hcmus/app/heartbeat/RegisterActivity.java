@@ -55,8 +55,10 @@ public class RegisterActivity extends AppCompatActivity {
                              public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                                  Log.d("Body", "Body");
                                  if (response.code() == 200) {
+                                     Toast.makeText(getApplicationContext(), "Register successfully" , Toast.LENGTH_LONG).show();
                                      try {
                                          JSONObject responseObject = new JSONObject(response.body().getData().toString());
+
                                          String token = (String) responseObject.getString("token");
                                          //Save token to local storage
                                          SharedPreferences.Editor editor = getSharedPreferences(USER_TOKEN, MODE_PRIVATE).edit();
@@ -67,9 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
                                          String retreivedToken  = prefs.getString("token", "none");
                                          Log.d("TOKEN", retreivedToken);
                                          //Login then go to application context
-                                         Toast.makeText(RegisterActivity.this, "Register successfully" , Toast.LENGTH_LONG).show();
-                                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                         finish();
+//                                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                                         finish();
                                      } catch (JSONException e) {
                                          e.printStackTrace();
                                      }
